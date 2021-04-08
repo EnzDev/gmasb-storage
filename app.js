@@ -2,7 +2,6 @@ const express = require('express');
 const fs = require("fs");
 const logger = require('morgan');
 const sleep = require('sleep');
-const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -59,7 +58,7 @@ let writeAwait = false;
 const DB = "./database.db"
 
 if (fs.existsSync(DB)) {
-    data = JSON.parse(fs.readFileSync(DB))
+    data = JSON.parse(fs.readFileSync(DB).toString())
     view = sorter(data)
 } else {
     // save default

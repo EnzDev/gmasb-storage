@@ -139,13 +139,8 @@ app.post('/store', function (req, res, next) {
         res.sendStatus(404)
 });
 
-app.get('/first', function (req, res, next) {
-    let size = Number(req.query.size || 40)
-    res.json(view.slice(0, size));
-});
 app.get('/next', function (req, res, next) {
-    let cursor = Number(req.query.start)
-    if(!cursor) return res.sendStatus(203)
+    let cursor = Number(req.query.start) || 0
     let size = Number(req.query.size || 20)
     res.json(view.slice(cursor, cursor + size));
 });

@@ -79,6 +79,14 @@ if (fs.existsSync(AD)) {
     process.exit(1);
 }
 
+app.use(function(req, res, next){
+    console.log('\033[1;34m[I]\033[0;00m Request to ' + req.originalUrl)
+    res.header('Access-Control-Allow-Origin', '*')
+    next();
+});
+
+
+
 app.use(logger('dev'));
 // app.use(bodyParser.json)
 app.use(express.json());

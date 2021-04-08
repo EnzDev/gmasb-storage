@@ -2,7 +2,6 @@ const express = require('express');
 const fs = require("fs");
 const logger = require('morgan');
 const sleep = require('sleep');
-const bodyParser = require('body-parser');
 
 const app = express();
 

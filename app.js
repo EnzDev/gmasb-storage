@@ -25,24 +25,6 @@ let data = {
             seed: '|5?CK!;`V9a+~',
             size: 512,
             generated: 1542912627692
-        },
-        '=C\n4}6IML9': {
-            url: 'randimg_CIML_512.jpg',
-            seed: '=C\n4}6IML9',
-            size: 512,
-            generated: 1542918945872
-        },
-        'CMeHB\r': {
-            url: 'randimg_CMeHB_512.jpg',
-            seed: 'CMeHB\r',
-            size: 512,
-            generated: 1543003087622
-        },
-        'C91K"s': {
-            url: 'randimg_CKs_512.jpg',
-            seed: 'C91K"s',
-            size: 512,
-            generated: 1542939589932
         }
     }
 };
@@ -70,6 +52,10 @@ let key
 
 if (fs.existsSync(AD)) {
     key = fs.readFileSync(AD).toString()
+        if(key.indexOf("\n") > -1){
+            key = key.replace("\n", "")
+            console.warn("New lines has been stripped from the key")
+        }
     if (key.length < 10) {
         console.error("Storage key is too short")
         process.exit(1);
@@ -88,7 +74,6 @@ app.use(function(req, res, next){
 
 
 app.use(logger('dev'));
-// app.use(bodyParser.json)
 app.use(express.json());
 
 app.get("/", (_, res) => res.json({ status: "up" }));
